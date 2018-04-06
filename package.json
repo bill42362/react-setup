@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/bill42362/react-setup/issues"
   },
-  "homepage": "https://github.com/bill42362/react-setup#readme"
+  "homepage": "https://github.com/bill42362/react-setup#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0"
+  }
 }
