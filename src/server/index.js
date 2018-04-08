@@ -1,6 +1,9 @@
 // index.js
 import Express from 'express';
+import EnvConfig from '../../config.json';
 
+const nodeEnv = process.env.NODE_ENV || EnvConfig.NODE_ENV || 'production';
+const isProd = 'production' === nodeEnv;
 const PORT = process.env.PORT || 3000;
 
 const server = new Express();
@@ -10,8 +13,6 @@ const renderHtml = (arg) => `
   <html>
   <head>
     <title>react-setup</title>
-
-    <link rel="stylesheet" href="/css/bundle.css"/>
   </head>
   <body>
     React-setup ${arg}
@@ -20,11 +21,18 @@ const renderHtml = (arg) => `
   </html>
 `;
 
-server.use('/js/', Express.static(`${__dirname}/../../dist/client/`));
-server.use('/css/', Express.static(`${__dirname}/../../dist/client/`));
-server.use('/fonts/', Express.static(`${__dirname}/../../dist/client/`));
-server.use('/img/', Express.static(`${__dirname}/../../dist/client/`));
+if(!isProd) {
+  const hotReloader = require('./hotReload.js');
+  server.use(hotReloader.webpackDevMiddleware);
+  server.use(hotReloader.webpackHotMiddleware);
+}
 
+//server.use('/js/', Express.static(`${__dirname}/../../dist/client/js/`));
+//server.use('/css/', Express.static(`${__dirname}/../../src/client/css/`));
+
+server.get('/', (request, response) => {
+  response.send(renderHtml(JSON.stringify(request.params)));
+});
 server.get('/:path', (request, response) => {
   response.send(renderHtml(JSON.stringify(request.params)));
 });
