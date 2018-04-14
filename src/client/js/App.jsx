@@ -1,6 +1,7 @@
 // App.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
+import { hot } from 'react-hot-loader';
 
 const App = (props) => {
   const { content } = props;
@@ -13,4 +14,4 @@ App.propTypes = {
   content: PropTypes.string,
 };
 
-export default App;
+export default hot(module)(App);
