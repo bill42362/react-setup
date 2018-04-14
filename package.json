@@ -7,7 +7,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && NODE_ENV=production webpack --progress",
     "devbuild": "npm run clean && NODE_ENV=development webpack --progress",
-    "devserver": "nodemon --exec 'babel-node src/server' --inspect ./src/server",
+    "devserver": "nodemon --exec 'babel-node src/server' --watch ./src/server",
     "start": "babel-node src/server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
