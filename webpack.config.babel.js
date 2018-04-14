@@ -35,7 +35,22 @@ export default {
   module: {
     rules: [
       {
-        test: /\.css/,
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {loader: 'eslint-loader'},
+        ],
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {loader: 'babel-loader'},
+        ],
+      },
+      {
+        test: /\.css$/,
         use: [
           {loader: 'style-loader'},
           {loader: 'css-loader'},
