@@ -15,7 +15,7 @@ const renderHtml = (arg) => `
     <title>react-setup</title>
   </head>
   <body>
-    React-setup ${arg}
+    <div id="app-root"></div>
     <script type="text/javascript" src="/js/bundle.js"></script>
   </body>
   </html>
