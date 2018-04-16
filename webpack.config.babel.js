@@ -4,7 +4,9 @@ import EnvConfig from './config.json';
 
 const nodeEnv = process.env.NODE_ENV || EnvConfig.NODE_ENV || 'production';
 const isProd = 'production' === nodeEnv;
-const plugins = [];
+const plugins = [
+  new webpack.EnvironmentPlugin(EnvConfig),
+];
 const devPlugins = [
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
