@@ -1,4 +1,5 @@
 // About.jsx
+'use strict';
 import React from 'react';
 import { Link, Switch, Redirect, Route } from 'react-router-dom';
 

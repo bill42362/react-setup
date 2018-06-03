@@ -1,10 +1,11 @@
 // App.jsx
+'use strict';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import Main from './Main.jsx';
-import Animal from './Animal.jsx';
+import Animals from '../container/Animals.js';
 import About from './About.jsx';
 
 const App = (props) => {
@@ -22,8 +23,8 @@ const App = (props) => {
       {content}
       <Switch>
         <Route exact path='/' render={Main}/>
-        <Route path='/dog' render={() => <Animal species='Dog' />}/>
-        <Route path='/cat' render={() => <Animal species='Cat' />}/>
+        <Route path='/dog' render={() => <Animals species='dog' />}/>
+        <Route path='/cat' render={() => <Animals species='cat' />}/>
         <Route path='/about' render={About}/>
         <Route path='/404' render={() => <div>Error</div>}/>
         <Redirect to='/404'/>

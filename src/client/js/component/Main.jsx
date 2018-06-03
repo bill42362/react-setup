@@ -1,4 +1,5 @@
 // Main.jsx
+'use strict';
 import React from 'react';
 
 const Main = () => {
