@@ -18,6 +18,7 @@ export default {
   externals: [NodeExternals()],
   entry: {
     renderApp: `${__dirname}/renderApp.js`,
+    createInitialStore: `${__dirname}/../client/js/createInitialStore.js`,
   },
   output: {
     filename: '[name].js',

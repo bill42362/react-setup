@@ -21,15 +21,19 @@ if(!isProd) {
 
 if(EnvConfig.SERVER_SIDE_RENDER) {
   compileJs()
-    .then(({ renderApp }) => {
+    .then(({ renderApp, createInitialStore }) => {
       server.get('/*', (request, response) => {
         const context = {};
-        const app = renderApp({ request, response, context });
+        const store = createInitialStore();
+        const app = renderApp({ request, response, context, store });
         if(context.url) {
           response.writeHead(301, {Location: context.url});
           response.end();
         } else {
-          response.send(renderHtml({ request, response, app }));
+          const preloadedState = store.getState();
+          response.send(renderHtml({
+            request, response, app, preloadedState
+          }));
         }
       });
       server.listen(PORT, () => {

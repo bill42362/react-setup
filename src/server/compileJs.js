@@ -29,9 +29,19 @@ export const compileJs = () => new Promise((resolve, reject) => {
       WebpackConfig.output.path,
       'renderApp.js'
     );
+    const createInitialStorePath = path.resolve(
+      WebpackConfig.output.path,
+      'createInitialStore.js'
+    );
     const renderAppString = fs.readFileSync(renderAppPath, 'utf8');
+    const createInitialStoreString = fs.readFileSync(
+      createInitialStorePath,
+      'utf8'
+    );
     const { renderApp } = requireFromString(renderAppString);
-    resolve({ renderApp });
+    const { createInitialStore }
+      = requireFromString(createInitialStoreString);
+    resolve({ renderApp, createInitialStore });
   });
 });
 
